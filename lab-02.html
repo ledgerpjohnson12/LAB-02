@@ -440,7 +440,23 @@ count()</code></pre>
 </div>
 <div id="ex-2." class="section level3">
 <h3>Ex 2.</h3>
-<pre class="r"><code># Write your code here to answer exercise 2</code></pre>
+<pre class="r"><code># Write your code here to answer exercise 2
+plastic_data_all %&gt;% 
+  mutate(total_mismanaged_plastic= mismanaged_plastic*population) %&gt;%
+  group_by(region) %&gt;% 
+  summarise(mean_total_mismanaged=mean(total_mismanaged_plastic,na.rm=T),count=n(),
+            total_mismanaged_plastic=sum(total_mismanaged_plastic,na.rm=T)) %&gt;% 
+  arrange(desc(total_mismanaged_plastic))</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##   region                      mean_total_mismanaged count total_mismanaged_pla…¹
+##   &lt;chr&gt;                                       &lt;dbl&gt; &lt;int&gt;                  &lt;dbl&gt;
+## 1 Asia                                     1026059.    39              40016313.
+## 2 Africa                                    320729.    43              13791329.
+## 3 Latin America and The Cari…               193450.    34               6577315.
+## 4 Europe                                     38180.    31               1183580.
+## 5 North America                             147190.     2                294380.
+## 6 Oceania                                    14577.    10                145766.
+## # ℹ abbreviated name: ¹​total_mismanaged_plastic</code></pre>
 </div>
 <div id="ex-3." class="section level3">
 <h3>Ex 3.</h3>
